@@ -5,10 +5,10 @@ This is supposed to be a repository for experimenting with the [Stripe API][stri
 There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 1. Pure REST HTTP requests with JSON.
-    - Uses either the [dart:io][dart_io] or the [http][http_dart] packages.
-1. The [Stripe][stripe_dart] Dart package, by Matias Meno and Martin Flucka.
+    - Uses either the [`dart:io`][dart_io] or the [`http`][http_dart] packages.
+1. The [`Stripe`][stripe_dart] Dart package, by Matias Meno and Martin Flucka.
     - From their docs: *This implementation is based on the official Stripe Java and NodeJS API wrappers and written as a proper native dart library.*
-1. The [Stripe SDK][stripe_sdk_dart] package, by Lars Dahl.
+1. The [`Stripe SDK`][stripe_sdk_dart] package, by Lars Dahl.
     - Specifically for Flutter.
     - Has a bunch of useful widgets.
 
@@ -19,7 +19,7 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 [stripe_hq]: https://github.com/stripe
 [stripe_sdk_dart]: https://pub.dev/packages/stripe_sdk
 
-<br />
+---
 
 **Table of Contents**
 
@@ -32,13 +32,15 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 <!-- /TOC -->
 
+---
+
 ## 1. Pros and Cons of Each Approach
 
 | Approach                                 | Pros                                                              | Cons                             |
 | ---------------------------------------- | ----------------------------------------------------------------- | -------------------------------- |
 | REST/HTTP/JSON                           | Highest amount of flexibility, fewer dependencies                 | Way more work, at least at first |
-| [Stripe by Meno and Flucka][stripe_dart] | Very basic and yet comprehensive implementation of the Stripe API | Less flexibility                 |
-| [Stripe SDK by Dahl][stripe_sdk_dart]    | Tons of useful functionalities and Flutter widgets                | Probably won't use most of it    |
+| [`Stripe` by Meno and Flucka][stripe_dart] | Very basic and yet comprehensive implementation of the Stripe API | Less flexibility                 |
+| [`Stripe SDK` by Dahl][stripe_sdk_dart]    | Tons of useful functionalities and Flutter widgets                | Probably won't use most of it    |
 
 ## 2. Creating Payments with Stripe
 

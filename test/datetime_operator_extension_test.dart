@@ -1,6 +1,6 @@
 import "package:test/test.dart";
 
-import "package:stripe_demo/stripe_demo.dart";
+import "package:stripe_dart_lab/stripe_dart_lab.dart";
 
 void main() {
   test("equals", () {

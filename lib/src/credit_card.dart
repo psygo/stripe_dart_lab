@@ -6,15 +6,16 @@ import "datetime_operator_extension.dart";
 @immutable
 class CreditCard {
   static final CreditCard johnDoe = CreditCard(
-      number: CardNumber(4242424242424242),
-      cvc: Cvc(123),
-      name: CardHolderName("John Doe"),
-      date: ExpirationDate(DateTime(2019, 1));
+    number: CardNumber(4242424242424242),
+    cvc: Cvc(123),
+    name: CardHolderName("John Doe"),
+    date: ExpirationDate(DateTime(2019, 1)),
+  );
 
   final CardNumber number;
   final Cvc cvc;
   final CardHolderName name;
-  final DateTime date;
+  final ExpirationDate date;
 
   const CreditCard({
     @required this.number,

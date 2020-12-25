@@ -1,6 +1,6 @@
 /// A demo on how to use the Stripe API in Dart, only in the backend.
 /// {@category Payment, Stripe, API, backend}
-library stripe_demo;
+library stripe_dart_lab;
 
 export "src/credit_card.dart"
     show CreditCard, CardNumber, Cvc, CardHolderName, ExpirationDate;

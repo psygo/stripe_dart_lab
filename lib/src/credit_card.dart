@@ -1,4 +1,5 @@
 import "package:meta/meta.dart";
+import "package:quiver/core.dart";
 
 import "datetime_operator_extension.dart";
 
@@ -15,6 +16,19 @@ class CreditCard {
     @required this.name,
     @required this.date,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreditCard &&
+          runtimeType == other.runtimeType &&
+          number == other.number &&
+          cvc == other.cvc &&
+          name == other.name &&
+          date == other.date;
+
+  @override
+  int get hashCode => hash4(number, cvc, name, date);
 }
 
 @immutable

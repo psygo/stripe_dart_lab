@@ -1,6 +1,6 @@
 name: stripe_demo
-description: A demo on how to use the Stripe API in Dart
-author: Philippe Fanaro <philippefanaro@gmail.com
+description: A demo on how to use the Stripe API in Dart, only in the backend.
+author: Philippe Fanaro <philippefanaro@gmail.com>
 version: 0.0.1
 
 environment:
@@ -11,4 +11,5 @@ dependencies:
 
 dev_dependencies:
   pedantic: ^1.9.2
+  quiver: ^2.1.5
   test: ^1.15.7

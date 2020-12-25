@@ -1,5 +1,5 @@
-/// A demo on how to use the Stripe API in Dart
-/// {@category Payment, Stripe, API}
+/// A demo on how to use the Stripe API in Dart, only in the backend.
+/// {@category Payment, Stripe, API, backend}
 library stripe_demo;
 
 export "src/credit_card.dart"

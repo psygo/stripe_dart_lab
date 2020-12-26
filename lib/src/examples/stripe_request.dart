@@ -5,9 +5,9 @@ import "package:stripe/stripe.dart";
 Future<void> main() async {
   // 1) Payment Intent
   
-  final String api_key = Platform.environment["STRIPE_SK_TEST"];
+  final String apiKey = Platform.environment["STRIPE_SK_TEST"];
 
-  final Stripe stripe = Stripe(api_key);
+  final Stripe stripe = Stripe(apiKey);
 
   final Map<String, dynamic> response = await stripe.client.post([
     "payment_intents"

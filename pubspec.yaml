@@ -2,6 +2,7 @@ name: stripe_dart_lab
 description: A demo on how to use the Stripe API in Dart, only in the backend.
 author: Philippe Fanaro <philippefanaro@gmail.com>
 version: 0.0.1
+publish_to: 'none'
 
 environment:
   flutter: ">=1.17.0 <=1.25.0"

@@ -1,6 +1,6 @@
 # Stripe Dart Lab
 
-This is supposed to be a repository for experimenting with the [Stripe API][stripe_hq] in the context of Dart.
+This is supposed to be a repository for experimenting with the [Stripe API][stripe_hq] in the context of Dart and Flutter.
 
 There are currently 3 main approaches/packages for using the Stripe API in Dart:
 

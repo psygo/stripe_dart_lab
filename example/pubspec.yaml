@@ -2,8 +2,8 @@ name: stripe_dart_lab_example
 description: >-
   The example app for experimenting with the Stripe API in the context of Dart.
 author: Philippe Fanaro <philippefanaro@gmail.com>
-publish_to: "none"
 version: 1.0.0+1
+publish_to: "none"
 
 environment:
   flutter: ">=1.17.0 <=1.25.0"

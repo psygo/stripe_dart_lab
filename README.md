@@ -27,8 +27,9 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 - [1. Pros and Cons of Each Approach](#1-pros-and-cons-of-each-approach)
 - [2. Creating Payments with Stripe](#2-creating-payments-with-stripe)
-- [3. Resources](#3-resources)
-    - [3.1. Courses](#31-courses)
+- [3. Setting Up Environment Variables](#3-setting-up-environment-variables)
+- [4. Resources](#4-resources)
+    - [4.1. Courses](#41-courses)
 
 <!-- /TOC -->
 
@@ -36,9 +37,9 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 ## 1. Pros and Cons of Each Approach
 
-| Approach                                 | Pros                                                              | Cons                             |
-| ---------------------------------------- | ----------------------------------------------------------------- | -------------------------------- |
-| REST/HTTP/JSON                           | Highest amount of flexibility, fewer dependencies                 | Way more work, at least at first |
+| Approach                                   | Pros                                                              | Cons                             |
+| ------------------------------------------ | ----------------------------------------------------------------- | -------------------------------- |
+| REST/HTTP/JSON                             | Highest amount of flexibility, fewer dependencies                 | Way more work, at least at first |
 | [`Stripe` by Meno and Flucka][stripe_dart] | Very basic and yet comprehensive implementation of the Stripe API | Less flexibility                 |
 | [`Stripe SDK` by Dahl][stripe_sdk_dart]    | Tons of useful functionalities and Flutter widgets                | Probably won't use most of it    |
 
@@ -53,7 +54,31 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 Use Dart's `http` package to create `GET`/`POST` requests.
 
-## 3. Resources
+## 3. Setting Up Environment Variables
+
+For security reasons, using environment variables is much safer than exposing them in the code.
+
+> If you make a mistake and accidentally expose a key in your code, Stripe allows you to roll over your current key and get a new one. Note, however, that hooks will work even after a key is dead.
+
+On Windows, through opening Command Prompt as an admin, you can set an environment variable with something like:
+
+```cmd
+setx variable=value
+```
+
+To check if your environment key was correctly set, use `echo %variable%`.
+
+> If you're using VS Code Integrated Terminals, this all might not work. They don't seem to have the correct or expected access to the system scope in this case. This all doesn't seem to work with PowerShell either.
+
+Environment variables on Windows are case-sensitive.
+
+You can also delete environment variables with an empty assignment
+
+```cmd
+setx variable=
+```
+
+## 4. Resources
 
 1. [Tutorials by Muhammad Ahsan Ayaz][tutorial_muhammad]
     - The [repo][tutorial_muhammad_github]
@@ -84,7 +109,7 @@ Use Dart's `http` package to create `GET`/`POST` requests.
 [tutorial_muhammad]: https://youtu.be/C0yptHbL2U8
 [tutorial_muhammad_github]: https://github.com/AhsanAyaz/flutter_stripe_payments
 
-### 3.1. Courses
+### 4.1. Courses
 
 1. [Stripe in Practice][stripe_in_practice]
 1. [Laravel Payment Processing][laravel_payment_processing]

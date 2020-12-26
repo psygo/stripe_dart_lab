@@ -3,5 +3,6 @@
     "markdown-toc.depthFrom": 2,
     "markdownlint.config": {
         "MD036": false
-    }
+    },
+    // "files.autoSave": "off"
 }

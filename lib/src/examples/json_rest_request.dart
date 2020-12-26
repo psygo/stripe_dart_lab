@@ -1,16 +1,19 @@
+import "dart:io";
+
 import "package:http/http.dart";
 
 Future<void> main() async {
   // 1) Payment Intent
-  
+
+  final String api_key = Platform.environment["STRIPE_SK_TEST"];
+
   final Client client = Client();
 
   final Uri uri = Uri(
       scheme: "https",
       host: "api.stripe.com",
       path: "v1/payment_intents",
-      userInfo:
-          "sk_test_51I1ag9L9RyDuS7hQUu1yFFwUbn06tdd3prsgtv5J5ubtEFoAEqpwBsjhuwJ9OKXkAVCIGBDhUwfOCpgfTYGwXf3900GePaNepc");
+      userInfo: api_key);
 
   final Response response = await client.post(uri, body: <String, dynamic>{
     "amount": "1000",

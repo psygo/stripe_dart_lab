@@ -6,6 +6,7 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 1. Pure REST HTTP requests with JSON.
     - Uses either the [`dart:io`][dart_io] or the [`http`][http_dart] packages.
+1. The [`stripe_payment`][stripe_payment] package.
 1. The [`Stripe`][stripe_dart] Dart package, by Matias Meno and Martin Flucka.
     - From their docs: *This implementation is based on the official Stripe Java and NodeJS API wrappers and written as a proper native dart library.*
 1. The [`Stripe SDK`][stripe_sdk_dart] package, by Lars Dahl.
@@ -17,21 +18,30 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 [http_dart]: https://pub.dev/packages/http
 [stripe_dart]: https://pub.dev/packages/stripe
 [stripe_hq]: https://github.com/stripe
+[stripe_payment]: https://pub.dev/packages/stripe_payment
 [stripe_sdk_dart]: https://pub.dev/packages/stripe_sdk
 
 ---
 
 **Table of Contents**
 
-<!-- TOC depthFrom:2 -->
-
-- [1. Pros and Cons of Each Approach](#1-pros-and-cons-of-each-approach)
-- [2. Creating Payments with Stripe](#2-creating-payments-with-stripe)
-- [3. Setting Up Environment Variables](#3-setting-up-environment-variables)
-- [4. Resources](#4-resources)
-    - [4.1. Courses](#41-courses)
-
-<!-- /TOC -->
+<style>
+  #toc ul {
+    list-style-type: none;
+  }
+</style>
+<div id="toc">
+  <ul >
+    <li><a href="#1-pros-and-cons-of-each-approach">1. Pros and Cons of Each Approach</a></li>
+    <li><a href="#2-creating-payments-with-stripe">2. Creating Payments with Stripe</a></li>
+    <li><a href="#3-setting-up-environment-variables">3. Setting Up Environment Variables</a></li>
+    <li><a href="#4-resources">4. Resources</a> 
+        <ul>
+          <li><a href="#41-courses">4.1. Courses</a></li>
+        </ul>
+    </li>
+  </ul>
+</div>
 
 ---
 
@@ -80,6 +90,7 @@ setx variable=
 
 ## 4. Resources
 
+1. [Stripe Developers' YouTube Channel][stripe_developers]
 1. [Tutorials by Muhammad Ahsan Ayaz][tutorial_muhammad]
     - The [repo][tutorial_muhammad_github]
 1. [Google Pay for Transit | System Architecture][google_pay]
@@ -104,6 +115,7 @@ setx variable=
 [pub_stripe_sdk]: https://pub.dev/packages/stripe_sdk
 [role_based_architecture]: https://w3c.github.io/webpayments/proposals/architecture/
 [stripe_api]: https://stripe.com/docs/api
+[stripe_developers]: https://www.youtube.com/channel/UCd1HAa7hlN5SCQjgCcGnsxw
 [stripe_gitlab]: https://gitlab.com/exitlive/stripe-dart
 [stripe_quickstart]: https://stripe.com/docs/development/quickstart
 [tutorial_muhammad]: https://youtu.be/C0yptHbL2U8

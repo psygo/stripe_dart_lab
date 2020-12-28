@@ -30,6 +30,7 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
     list-style-type: none;
   }
 </style>
+
 <div id="toc">
   <ul >
     <li><a href="#1-pros-and-cons-of-each-approach">1. Pros and Cons of Each Approach</a></li>

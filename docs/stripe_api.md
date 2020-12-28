@@ -10,7 +10,7 @@
 
 <div id="TOC">
   <style>
-    ul {
+    li {
       list-style-type: none;
     }
   </style>

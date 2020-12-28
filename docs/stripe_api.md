@@ -7,8 +7,8 @@
 
 **Table of Contents**
 
-<div id="TOC">
-  <ul style="list-style-type: none;">
+<div id="TOC" style="ul { list-style-type: none; }">
+  <ul>
     <li><a href="#1-authentication">1. Authentication</a></li>
     <li><a href="#2-errors">2. Errors</a></li>
     <li><a href="#3-idempotent-requests">3. Idempotent Requests</a></li>

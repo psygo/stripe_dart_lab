@@ -9,13 +9,12 @@
 
 
 <div id="TOC">
-    <div>
-    <style>
-        #TOC ul {
-        list-style-type: none;
-        }
-    </style>
-    </div>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+  </style>
+
   <ul>
     <li><a href="#1-authentication">1. Authentication</a></li>
     <li><a href="#2-errors">2. Errors</a></li>

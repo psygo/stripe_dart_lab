@@ -25,18 +25,16 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
 
 **Table of Contents**
 
-<div id="user-content-toc">
-  <ul>
-    <li><a href="#1-pros-and-cons-of-each-approach">1. Pros and Cons of Each Approach</a></li>
-    <li><a href="#2-creating-payments-with-stripe">2. Creating Payments with Stripe</a></li>
-    <li><a href="#3-setting-up-environment-variables">3. Setting Up Environment Variables</a></li>
-    <li><a href="#4-resources">4. Resources</a> 
-      <ul>
-        <li><a href="#41-courses">4.1. Courses</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
+<ul style="list-style-type">
+  <li><a href="#1-pros-and-cons-of-each-approach">1. Pros and Cons of Each Approach</a></li>
+  <li><a href="#2-creating-payments-with-stripe">2. Creating Payments with Stripe</a></li>
+  <li><a href="#3-setting-up-environment-variables">3. Setting Up Environment Variables</a></li>
+  <li><a href="#4-resources">4. Resources</a> 
+    <ul style="list-style-type">
+      <li><a href="#41-courses">4.1. Courses</a></li>
+    </ul>
+  </li>
+</ul>
 
 ---
 

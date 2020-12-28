@@ -7,20 +7,12 @@
 
 **Table of Contents**
 
-<style>
-  #TOC ul {
-    list-style-type: none;
-  }
-</style>
-
-<div id="TOC">
-  <ul>
-    <li><a href="#1-authentication">1. Authentication</a></li>
-    <li><a href="#2-errors">2. Errors</a></li>
-    <li><a href="#3-idempotent-requests">3. Idempotent Requests</a></li>
-    <li><a href="#4-metadata">4. Metadata</a></li>
-  </ul>
-</div>
+<ul style="list-style-type: none;">
+  <li><a href="#1-authentication">1. Authentication</a></li>
+  <li><a href="#2-errors">2. Errors</a></li>
+  <li><a href="#3-idempotent-requests">3. Idempotent Requests</a></li>
+  <li><a href="#4-metadata">4. Metadata</a></li>
+</ul>
 
 ---
 
@@ -47,3 +39,28 @@ Updateable Stripe objects—including Account, Charge, Customer, PaymentIntent, 
 You can specify up to 50 keys, with key names up to 40 characters long and values up to 500 characters long.
 
 > Updating these data both in Firebase and Stripe might be a good idea, but it would also be easy to forget. But we could use OOP to ensure that both updates occur via an interface for both updates.
+
+Unlike metadata, description is a single string, and your users may see it (e.g., in email receipts Stripe sends on your behalf).
+
+Sample metadata use cases:
+
+- Link IDs
+- Refund papertrails
+- Customer details
+
+## 5. Pagination
+
+All top-level API resources have support for bulk fetches via "list" API methods. For instance, you can list charges, list customers, and list invoices. These list API methods share a common structure, taking at least these three parameters: limit, `starting_after`, and `ending_before`.
+
+List Response Format:
+
+- `object`
+- `data`
+- `has_more`
+- `url`
+
+## 6. Auto-Pagination
+
+Most of our libraries support auto-pagination. This feature easily handles fetching large lists of resources without having to manually paginate results and perform subsequent requests.
+
+Since curl simply emits raw HTTP requests, it doesn't support auto-pagination.

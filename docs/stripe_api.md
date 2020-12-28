@@ -7,21 +7,13 @@
 
 **Table of Contents**
 
-
-<div id="TOC">
-  <style>
-    li {
-      list-style-type: none;
-    }
-  </style>
-
   <ul>
-    <li><a href="#1-authentication">1. Authentication</a></li>
-    <li><a href="#2-errors">2. Errors</a></li>
-    <li><a href="#3-idempotent-requests">3. Idempotent Requests</a></li>
-    <li><a href="#4-metadata">4. Metadata</a></li>
+    <li style="list-style-type: none"><a href="#1-authentication">1. Authentication</a></li>
+    <li style="list-style-type: none"><a href="#2-errors">2. Errors</a></li>
+    <li style="list-style-type: none"><a href="#3-idempotent-requests">3. Idempotent Requests</a></li>
+    <li style="list-style-type: none"><a href="#4-metadata">4. Metadata</a></li>
   </ul>
-</div>
+
 
 ---
 

@@ -232,3 +232,79 @@ Types of tokens:
 - Account
 - Person
 - CVC
+
+## 3. Payment Methods
+
+### 3.1. PaymentMethods
+
+PaymentMethod objects represent your customer's payment instruments. They can be used with PaymentIntents to collect payments or saved to Customer objects to store instrument details for future payments.
+
+Related guides: Payment Methods and More Payment Scenarios.
+
+See the `type` parameter for accepted payment types.
+
+To attach a new PaymentMethod to a customer for future payments, we recommend you use a SetupIntent or a PaymentIntent with setup_future_usage. These approaches will perform any necessary steps to ensure that the PaymentMethod can be used in a future payment. Using the `/v1/payment_methods/:id/attach` endpoint does not ensure that future payments can be made with the attached PaymentMethod. See Optimizing cards for future payments for more information about setting up future payments.
+
+### 3.2. Bank Accounts
+
+These bank accounts are payment methods on Customer objects.
+
+On the other hand External Accounts are transfer destinations on Account objects for Custom accounts. They can be bank accounts or debit cards as well, and are documented in the links above.
+
+When you create a new bank account, you must specify a Customer object on which to create it.
+
+#### 3.2.1. Verify a bank account
+
+A customer's bank account must first be verified before it can be charged. Stripe supports instant verification using Plaid for many of the most popular banks. If your customer's bank is not supported or you do not wish to integrate with Plaid, you must manually verify the customer's bank account using the API.
+
+### 3.3.
+
+You can store multiple cards on a customer in order to charge the customer later. You can also store multiple debit cards on a recipient in order to transfer to those cards later.
+
+`/v1/customers/:id/sources?object=card`
+
+If the card’s owner has no default card, then the new card will become the default. However, if the owner already has a default, then it will not change. To change the default, you should update the customer to have a new default_source.
+
+### 3.4. Sources
+
+Source objects allow you to accept a variety of payment methods. They represent a customer's payment instrument, and can be used with the Stripe API just like a Card object: once chargeable, they can be charged, or can be attached to customers.
+
+## 4. Checkout
+
+### 4.1. Sessions
+
+A Checkout Session represents your customer's session as they pay for one-time purchases or subscriptions through Checkout. We recommend creating a new Session each time your customer attempts to pay.
+
+Once payment is successful, the Checkout Session will contain a reference to the Customer, and either the successful PaymentIntent or an active Subscription.
+
+You can create a Checkout Session on your server and pass its ID to the client to begin Checkout.
+
+#### 4.1.1. Retrieve a Checkout Session's line items
+
+When retrieving a Checkout Session, there is an includable line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
+
+## 5. Billing
+
+### 5.1. Coupons
+
+A coupon contains information about a percent-off or amount-off discount you might want to apply to a customer. Coupons may be applied to invoices or orders. Coupons do not work with conventional one-off charges.
+
+You can create coupons easily via the coupon management page of the Stripe dashboard. Coupon creation is also accessible via the API if you need to create coupons on the fly.
+
+### 5.2. Customer Balance Transaction
+
+Each customer has a balance value, which denotes a debit or credit that's automatically applied to their next invoice upon finalization. You may modify the value directly by using the update customer API, or by creating a Customer Balance Transaction, which increments or decrements the customer's balance by the specified amount.
+
+Most credit balance transaction fields are immutable, but you may update its `description` and `metadata`.
+
+### 5.3. Customer Portal
+
+A session describes the instantiation of the customer portal for a particular customer. By visiting the session's URL, the customer can manage their subscriptions and billing details. For security reasons, sessions are short-lived and will expire if the customer does not visit the URL. Create sessions on-demand when customers intend to manage their subscriptions and billing details.
+
+### 5.4. Customer Tax IDs
+
+You can add one or multiple tax IDs to a customer. A customer's tax IDs are displayed on invoices and credit notes issued for the customer.
+
+### 5.5. Discounts
+
+A discount represents the actual application of a coupon to a particular customer. It contains information about when the discount began and when it will end.

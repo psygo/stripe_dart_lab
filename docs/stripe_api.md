@@ -82,3 +82,153 @@ This is an object representing your Stripe balance. You can retrieve it to see t
 #### 2.1.1. Balance Object
 
 Funds that are available to be transferred or paid out, whether automatically by Stripe or explicitly via the Transfers API or Payouts API.
+
+### 2.2 Charges
+
+To charge a credit or a debit card, you create a Charge object. You can retrieve and refund individual charges as well as list all charges. Charges are identified by a unique, random ID.
+
+Related guide: [Accept a payment with the Charges API][charges_tutorial].
+
+Amount intended to be collected by this payment. A positive integer representing how much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency. The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).
+
+You can:
+
+- Create a charge
+- Retrieve a charge
+- Update a charge
+- List all charges
+
+
+[charges_tutorial]: https://stripe.com/docs/payments/accept-a-payment-charges
+
+### 2.3. Customers
+
+Customer objects allow you to perform recurring charges, and to track multiple charges, that are associated with the same customer. The API allows you to create, delete, and update your customers. You can retrieve individual customers as well as a list of all your customers.
+
+Related guide: [Save a card during payment][save_card_tutorial] &mdash; tutorial on how payment intents fit into payments.
+
+
+[save_card_tutorial]: https://stripe.com/docs/payments/save-during-payment
+
+#### 2.3.1. Delete a Customer
+
+Permanently deletes a customer. It cannot be undone. Also immediately cancels any active subscriptions on the customer.
+
+### 2.4. Disputes
+
+A dispute occurs when a customer questions your charge with their card issuer. When this happens, you're given the opportunity to respond to the dispute with evidence that shows that the charge is legitimate. You can find more information about the dispute process in our Disputes and Fraud documentation.
+
+#### 2.4.1. Updating a dispute
+
+When you get a dispute, contacting your customer is always the best first step. If that doesn’t work, you can submit evidence to help us resolve the dispute in your favor. You can do this in your dashboard, but if you prefer, you can use the API to submit evidence programmatically
+
+### 2.5. Events
+
+Events are our way of letting you know when something interesting happens in your account.
+
+As with other API resources, you can use endpoints to retrieve an individual event or a list of events from the API. We also have a separate webhooks system for sending the Event objects directly to an endpoint on your server. Webhooks are managed in your account settings, and our Using Webhooks guide will help you get set up.
+
+All of POST, GET, PUT operations on data can be triggered by this part of the API.
+
+### 2.6. Files
+
+This is an object representing a file hosted on Stripe's servers. The file may have been uploaded by yourself using the create file request (for example, when uploading dispute evidence) or it may have been created by Stripe (for example, the results of a Sigma scheduled query).
+
+#### 2.6.1. Create a file
+
+To upload a file to Stripe, you’ll need to send a request of type multipart/form-data. The request should contain the file you would like to upload, as well as the parameters for creating a file.
+All of Stripe’s officially supported Client libraries should have support for sending multipart/form-data.
+
+### 2.7. File Links
+
+To share the contents of a File object with non-Stripe users, you can create a FileLink. FileLinks contain a URL that can be used to retrieve the contents of the file without authentication.
+
+### 2.8. Mandates
+
+A Mandate is a record of the permission a customer has given you to debit their payment method.
+
+### 2.9. PaymentIntents
+
+A PaymentIntent guides you through the process of collecting a payment from your customer. We recommend that you create exactly one PaymentIntent for each order or customer session in your system. You can reference the PaymentIntent later to see the history of payment attempts for a particular session.
+
+A PaymentIntent transitions through multiple statuses throughout its lifetime as it interfaces with Stripe.js to perform authentication flows and ultimately creates at most one successful charge.
+
+`amount`: Amount intended to be collected by this PaymentIntent. A positive integer representing how much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency. The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).
+
+Related guide: [Payment Intents API][payment_intent_tutorial].
+
+*Confirm* that your customer intends to pay with current or provided payment method. Upon confirmation, the PaymentIntent will attempt to initiate a payment.
+
+`POST v1/payment_intents/:id/confirm`
+
+`setup_future_usage`: Indicates that you intend to make future payments with this PaymentIntent’s payment method.
+
+Capture the funds of an existing uncaptured PaymentIntent when its status is `requires_capture`.
+
+Uncaptured PaymentIntents will be canceled exactly seven days after they are created.
+
+
+[payment_intent_tutorial]: https://stripe.com/docs/api/payment_intents
+
+### 2.10. SetupIntents
+
+A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments. For example, you could use a SetupIntent to set up and save your customer's card without immediately collecting a payment. Later, you can use PaymentIntents to drive the payment flow.
+
+> By using SetupIntents, you ensure that your customers experience the minimum set of required friction, even as regulations change over time.
+
+#### 2.10.1. Confirm a SetupIntent
+
+Confirm that your customer intends to set up the current or provided payment method. For example, you would confirm a SetupIntent when a customer hits the “Save” button on a payment method management page on your website.
+
+### 2.11. SetupAttempts
+
+A SetupAttempt describes one attempted confirmation of a SetupIntent, whether that confirmation was successful or unsuccessful. You can use SetupAttempts to inspect details of a specific attempt at setting up a payment method using a SetupIntent.
+
+### 2.12. Payouts
+
+A Payout object is created when you receive funds from Stripe, or when you initiate a payout to either a bank account or debit card of a connected Stripe account. You can retrieve individual payouts, as well as list all payouts. Payouts are made on varying schedules, depending on your country and industry.
+
+To send funds to your own bank account, you create a new payout object. Your Stripe balance must be able to cover the payout amount, or you’ll receive an “Insufficient Funds” error.
+
+If your API key is in test mode, money won’t actually be sent, though everything else will occur as if in live mode.
+
+Payouts can fail for a variety of reasons. The reason a given payout failed is available in a Payout object's failure_code attribute.
+
+### 2.13. Products
+
+Products describe the specific goods or services you offer to your customers. For example, you might offer a Standard and Premium version of your goods or service; each version would be a separate Product. They can be used in conjunction with Prices to configure pricing in Checkout and Subscriptions.
+
+### 2.14. Prices
+
+Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products. Products help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+
+For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
+
+```json
+{
+    ...
+    "product": "product_key",
+    ...
+}
+```
+
+### 2.15. Refunds
+
+Refund objects allow you to refund a charge that has previously been created but not yet refunded. Funds will be refunded to the credit or debit card that was originally charged.
+
+You can optionally refund only part of a charge. You can do so multiple times, until the entire charge has been refunded.
+
+### 2.16. Tokens
+
+Tokenization is the process Stripe uses to collect sensitive card or bank account details, or personally identifiable information (PII), directly from your customers in a secure manner. A token representing this information is returned to your server to use. You should use our recommended payments integrations to perform this process client-side. This ensures that no sensitive card data touches your server, and allows your integration to operate in a PCI-compliant way.
+
+Tokens cannot be stored or used more than once. To store card or bank account information for later use, you can create Customer objects or Custom accounts. Note that Radar, our integrated solution for automatic fraud protection, supports only integrations that use client-side tokenization.
+
+Types of tokens:
+
+- Card
+- Bank account
+- PII
+- Account
+- Person
+- CVC

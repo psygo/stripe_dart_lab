@@ -1,5 +1,3 @@
-import "dart:io";
-
 import "package:stripe_sdk/stripe_sdk.dart";
 
 /// I don't think this will work if you're not inside a Flutter app.

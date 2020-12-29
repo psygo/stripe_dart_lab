@@ -308,3 +308,61 @@ You can add one or multiple tax IDs to a customer. A customer's tax IDs are disp
 ### 5.5. Discounts
 
 A discount represents the actual application of a coupon to a particular customer. It contains information about when the discount began and when it will end.
+
+### 5.6. Invoices
+
+Invoices are statements of amounts owed by a customer, and are either generated one-off, or generated periodically from a subscription.
+
+They contain invoice items, and proration adjustments that may be caused by subscription upgrades/downgrades (if necessary).
+
+#### 5.6.1. Create an invoice
+
+This endpoint creates a draft invoice for a given customer. The draft invoice created pulls in all pending invoice items on that customer, including prorations. The invoice remains a draft until you finalize the invoice, which allows you to pay or send the invoice to your customers.
+
+#### 5.6.2. Update an invoice
+
+Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method, become uneditable.
+
+If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false.
+
+#### 5.6.3. Pay an invoice
+
+Stripe automatically creates and then attempts to collect payment on invoices for customers on subscriptions according to your subscriptions settings. However, if you’d like to attempt payment on an invoice out of the normal collection schedule or for some other reason, you can do so.
+
+#### 5.6.4. Retrieve an upcoming invoice
+
+At any time, you can preview the upcoming invoice for a customer. This will show you all the charges that are pending, including subscription renewal charges, invoice item charges, etc. It will also show you any discounts that are applicable to the invoice.
+
+### 5.7. Invoice Items
+
+Sometimes you want to add a charge or credit to a customer, but actually charge or credit the customer's card only at the end of a regular billing cycle. This is useful for combining several charges (to minimize per-transaction fees), or for having Stripe tabulate your usage-based billing totals.
+
+### 5.8. Plans
+
+You can now model subscriptions more flexibly using the Prices API. It replaces the Plans API and is backwards compatible to simplify your migration.
+
+Plans define the base price, currency, and billing cycle for recurring purchases of products. Products help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+
+### 5.9. Promotion Code
+
+A Promotion Code represents a customer-redeemable code for a coupon. It can be used to create multiple codes for a single coupon.
+
+### 5.10. Subscriptions
+
+Subscriptions allow you to charge a customer on a recurring basis.
+
+### 5.11. Subscription Schedules
+
+Creates a new subscription schedule object. Each customer can have up to 500 active or scheduled subscriptions.
+
+### 5.12. Tax Rate
+
+Tax rates can be applied to invoices, subscriptions and Checkout Sessions to collect tax.
+
+### Usage Records
+
+Usage records allow you to report customer usage and metrics to Stripe for metered billing of subscription prices.
+
+Related guide: Metered Billing.
+
+The default calculation for usage is to add up all the quantity values of the usage records within a billing period. You can change this default behavior with the billing plan’s aggregate_usage parameter. When there is more than one usage record with the same timestamp, Stripe adds the quantity values together. In most cases, this is the desired resolution, however, you can change this behavior with the action parameter.

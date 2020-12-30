@@ -1,5 +1,7 @@
 # Stripe Dart Lab
 
+> Personally, I feel like the best way of getting acquainted with Stripe is through reading the raw [Stripe API Docs][stripe_api]. You will find all of the data entities there, and how to get them, which is exactly what the SDKs do anyway, albeit in a more friendly fashion &mdash; or is the raw fashion more friendly?
+
 This is supposed to be a repository for experimenting with the [Stripe API][stripe_hq] in the context of Dart and Flutter.
 
 There are currently 3 main approaches/packages for using the Stripe API in Dart:

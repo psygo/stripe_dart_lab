@@ -359,10 +359,62 @@ Creates a new subscription schedule object. Each customer can have up to 500 act
 
 Tax rates can be applied to invoices, subscriptions and Checkout Sessions to collect tax.
 
-### Usage Records
+### 5.13. Usage Records
 
 Usage records allow you to report customer usage and metrics to Stripe for metered billing of subscription prices.
 
 Related guide: Metered Billing.
 
 The default calculation for usage is to add up all the quantity values of the usage records within a billing period. You can change this default behavior with the billing plan’s aggregate_usage parameter. When there is more than one usage record with the same timestamp, Stripe adds the quantity values together. In most cases, this is the desired resolution, however, you can change this behavior with the action parameter.
+
+## 6. Connect
+
+Connect is a powerful API and set of tools used to route payments between a business, customers, and recipients who need to get paid. It powers payments for business models like *marketplaces* and *software platforms*. Connect can be used on its own to send payouts to recipients, or alongside Stripe Payments to accept and route payments from customers.
+
+> Me: You're basically going to act as Stripe for your customers, charging a fee for each transaction if you wish for example.
+
+### 6.1. Accounts
+
+This is an object representing a Stripe account. You can retrieve it to see properties on the account like its current e-mail address or if the account is enabled yet to make live charges.
+
+Some properties, marked below, are available only to platforms that want to create and manage Express or Custom accounts.
+
+### 6.2. Account Links
+
+Account Links are the means by which a Connect platform grants a connected account permission to access Stripe-hosted applications, such as Connect Onboarding.
+
+### 6.3. Application Fees
+
+When you collect a transaction fee on top of a charge made for your user (using Connect), an Application Fee object is created in your account. You can list, retrieve, and refund application fees.
+
+### 6.4. Capabilities
+
+This is an object representing a capability for a Stripe account.
+
+### 6.5. Country Specs
+
+Stripe needs to collect certain pieces of information about each account created. These requirements can differ depending on the account's country. The Country Specs API makes these rules available to your integration.
+
+### 6.6. External Accounts
+
+External Accounts are transfer destinations on Account objects for Custom and Express accounts. They can be bank accounts or debit cards.
+
+Bank accounts and debit cards can also be used as payment sources on regular charges, and are documented in the links above.
+
+### 6.7. Person
+
+This is an object representing a person associated with a Stripe account.
+
+### 6.8. Top-ups
+
+To top up your Stripe balance, you create a top-up object. You can retrieve individual top-ups, as well as list all top-ups. Top-ups are identified by a unique, random ID.
+
+### 6.9. Transfers
+
+A Transfer object is created when you move funds between Stripe accounts as part of Connect.
+
+### 6.10. Transfer Reversals
+
+Stripe Connect platforms can reverse transfers made to a connected account, either entirely or partially, and can also specify whether to refund any related application fees. Transfer reversals add to the platform's balance and subtract from the destination account's balance.
+
+Reversing a transfer that was made for a destination charge is allowed only up to the amount of the charge. It is possible to reverse a transfer_group transfer only if the destination account has enough balance to cover the reversal.

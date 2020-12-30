@@ -9,10 +9,213 @@
 
 <div id="user-content-toc">
   <ul>
-    <li><a href="#1-authentication">1. Authentication</a></li>
-    <li><a href="#2-errors">2. Errors</a></li>
-    <li><a href="#3-idempotent-requests">3. Idempotent Requests</a></li>
-    <li><a href="#4-metadata">4. Metadata</a></li>
+    <li>
+      <a href="#1-introduction">1. Introduction</a>
+      <ul>
+        <li><a href="#11-authentication">1.1. Authentication</a></li>
+        <li><a href="#12-errors">1.2. Errors</a></li>
+        <li><a href="#13-idempotent-requests">1.3. Idempotent Requests</a></li>
+        <li><a href="#14-metadata">1.4. Metadata</a></li>
+        <li><a href="#15-pagination">1.5. Pagination</a></li>
+        <li><a href="#16-auto-pagination">1.6. Auto-Pagination</a></li>
+        <li><a href="#17-request-ids">1.7. Request IDs</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#2-core-resources">2. Core Resources</a>
+      <ul>
+        <li>
+          <a href="#21-balance">2.1. Balance</a>
+          <ul>
+            <li><a href="#211-balance-object">2.1.1. Balance Object</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-charges">2.2. Charges</a></li>
+        <li>
+          <a href="#23-customers">2.3. Customers</a>
+          <ul>
+            <li>
+              <a href="#231-delete-a-customer">2.3.1. Delete a Customer</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#24-disputes">2.4. Disputes</a>
+          <ul>
+            <li>
+              <a href="#241-updating-a-dispute">2.4.1. Updating a dispute</a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#25-events">2.5. Events</a></li>
+        <li>
+          <a href="#26-files">2.6. Files</a>
+          <ul>
+            <li><a href="#261-create-a-file">2.6.1. Create a file</a></li>
+          </ul>
+        </li>
+        <li><a href="#27-file-links">2.7. File Links</a></li>
+        <li><a href="#28-mandates">2.8. Mandates</a></li>
+        <li><a href="#29-paymentintents">2.9. PaymentIntents</a></li>
+        <li>
+          <a href="#210-setupintents">2.10. SetupIntents</a>
+          <ul>
+            <li>
+              <a href="#2101-confirm-a-setupintent"
+                >2.10.1. Confirm a SetupIntent</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li><a href="#211-setupattempts">2.11. SetupAttempts</a></li>
+        <li><a href="#212-payouts">2.12. Payouts</a></li>
+        <li><a href="#213-products">2.13. Products</a></li>
+        <li><a href="#214-prices">2.14. Prices</a></li>
+        <li><a href="#215-refunds">2.15. Refunds</a></li>
+        <li><a href="#216-tokens">2.16. Tokens</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#3-payment-methods">3. Payment Methods</a>
+      <ul>
+        <li><a href="#31-paymentmethods">3.1. PaymentMethods</a></li>
+        <li>
+          <a href="#32-bank-accounts">3.2. Bank Accounts</a>
+          <ul>
+            <li>
+              <a href="#321-verify-a-bank-account"
+                >3.2.1. Verify a bank account</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li><a href="#33-">3.3. .</a></li>
+        <li><a href="#34-sources">3.4. Sources</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#4-checkout">4. Checkout</a>
+      <ul>
+        <li>
+          <a href="#41-sessions">4.1. Sessions</a>
+          <ul>
+            <li>
+              <a href="#411-retrieve-a-checkout-sessions-line-items"
+                >4.1.1. Retrieve a Checkout Session&#39;s line items</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#5-billing">5. Billing</a>
+      <ul>
+        <li><a href="#51-coupons">5.1. Coupons</a></li>
+        <li>
+          <a href="#52-customer-balance-transaction"
+            >5.2. Customer Balance Transaction</a
+          >
+        </li>
+        <li><a href="#53-customer-portal">5.3. Customer Portal</a></li>
+        <li><a href="#54-customer-tax-ids">5.4. Customer Tax IDs</a></li>
+        <li><a href="#55-discounts">5.5. Discounts</a></li>
+        <li>
+          <a href="#56-invoices">5.6. Invoices</a>
+          <ul>
+            <li>
+              <a href="#561-create-an-invoice">5.6.1. Create an invoice</a>
+            </li>
+            <li>
+              <a href="#562-update-an-invoice">5.6.2. Update an invoice</a>
+            </li>
+            <li><a href="#563-pay-an-invoice">5.6.3. Pay an invoice</a></li>
+            <li>
+              <a href="#564-retrieve-an-upcoming-invoice"
+                >5.6.4. Retrieve an upcoming invoice</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li><a href="#57-invoice-items">5.7. Invoice Items</a></li>
+        <li><a href="#58-plans">5.8. Plans</a></li>
+        <li><a href="#59-promotion-code">5.9. Promotion Code</a></li>
+        <li><a href="#510-subscriptions">5.10. Subscriptions</a></li>
+        <li>
+          <a href="#511-subscription-schedules">5.11. Subscription Schedules</a>
+        </li>
+        <li><a href="#512-tax-rate">5.12. Tax Rate</a></li>
+        <li><a href="#513-usage-records">5.13. Usage Records</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#6-connect">6. Connect</a>
+      <ul>
+        <li><a href="#61-accounts">6.1. Accounts</a></li>
+        <li><a href="#62-account-links">6.2. Account Links</a></li>
+        <li><a href="#63-application-fees">6.3. Application Fees</a></li>
+        <li><a href="#64-capabilities">6.4. Capabilities</a></li>
+        <li><a href="#65-country-specs">6.5. Country Specs</a></li>
+        <li><a href="#66-external-accounts">6.6. External Accounts</a></li>
+        <li><a href="#67-person">6.7. Person</a></li>
+        <li><a href="#68-top-ups">6.8. Top-ups</a></li>
+        <li><a href="#69-transfers">6.9. Transfers</a></li>
+        <li><a href="#610-transfer-reversals">6.10. Transfer Reversals</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#7-fraud">7. Fraud</a>
+      <ul>
+        <li><a href="#71-early-fraud-warning">7.1. Early Fraud Warning</a></li>
+        <li><a href="#72-reviews">7.2. Reviews</a></li>
+        <li><a href="#73-value-lists">7.3. Value Lists</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#8-issuing">8. Issuing</a>
+      <ul>
+        <li><a href="#81-authorizations">8.1. Authorizations</a></li>
+        <li><a href="#82-cardholders">8.2. Cardholders</a></li>
+        <li><a href="#83-disputes">8.3. Disputes</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#9-terminal">9. Terminal</a>
+      <ul>
+        <li><a href="#91-connection-token">9.1. Connection Token</a></li>
+        <li><a href="#92-location">9.2. Location</a></li>
+        <li><a href="#93-reader">9.3. Reader</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#10-orders">10. Orders</a>
+      <ul>
+        <li><a href="#101-orders">10.1. Orders</a></li>
+        <li><a href="#102-skus">10.2. SKUs</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#11-sigma">11. Sigma</a>
+      <ul>
+        <li><a href="#111-scheduled-queries">11.1. Scheduled Queries</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#12-reporting">12. Reporting</a>
+      <ul>
+        <li><a href="#121-report-runs">12.1. Report Runs</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#13-webhook-endpoints">13. Webhook Endpoints</a>
+      <ul>
+        <li>
+          <a href="#131-create-a-webhook-endpoint"
+            >13.1. Create a webhook endpoint</a
+          >
+        </li>
+      </ul>
+    </li>
   </ul>
 </div>
 
@@ -83,7 +286,7 @@ This is an object representing your Stripe balance. You can retrieve it to see t
 
 Funds that are available to be transferred or paid out, whether automatically by Stripe or explicitly via the Transfers API or Payouts API.
 
-### 2.2 Charges
+### 2.2. Charges
 
 To charge a credit or a debit card, you create a Charge object. You can retrieve and refund individual charges as well as list all charges. Charges are identified by a unique, random ID.
 
@@ -257,7 +460,7 @@ When you create a new bank account, you must specify a Customer object on which 
 
 A customer's bank account must first be verified before it can be charged. Stripe supports instant verification using Plaid for many of the most popular banks. If your customer's bank is not supported or you do not wish to integrate with Plaid, you must manually verify the customer's bank account using the API.
 
-### 3.3.
+### 3.3. .
 
 You can store multiple cards on a customer in order to charge the customer later. You can also store multiple debit cards on a recipient in order to transfer to those cards later.
 

@@ -418,3 +418,79 @@ A Transfer object is created when you move funds between Stripe accounts as part
 Stripe Connect platforms can reverse transfers made to a connected account, either entirely or partially, and can also specify whether to refund any related application fees. Transfer reversals add to the platform's balance and subtract from the destination account's balance.
 
 Reversing a transfer that was made for a destination charge is allowed only up to the amount of the charge. It is possible to reverse a transfer_group transfer only if the destination account has enough balance to cover the reversal.
+
+## 7. Fraud
+
+### 7.1. Early Fraud Warning
+
+An early fraud warning indicates that the card issuer has notified us that a charge may be fraudulent.
+
+### 7.2. Reviews
+
+Reviews can be used to supplement automated fraud detection with human expertise.
+
+### 7.3. Value Lists
+
+Value lists allow you to group values together which can then be referenced in rules.
+
+## 8. Issuing
+
+### 8.1. Authorizations
+
+When an issued card is used to make a purchase, an Issuing Authorization object is created. Authorizations must be approved for the purchase to be completed successfully.
+
+> Stripe Issuing is an API for businesses to instantly create, manage, and distribute payment cards.
+
+### 8.2. Cardholders
+
+An Issuing Cardholder object represents an individual or business entity who is issued cards.
+
+### 8.3. Disputes
+
+As a card issuer, you can dispute transactions that the cardholder does not recognize, suspects to be fraudulent, or has other issues with.
+
+## 9. Terminal
+
+### 9.1. Connection Token
+
+A Connection Token is used by the Stripe Terminal SDK to connect to a reader.
+
+### 9.2. Location
+
+A Location represents a grouping of readers.
+
+### 9.3. Reader
+
+A Reader represents a physical device for accepting payment details.
+
+## 10. Orders
+
+### 10.1. Orders
+
+Order objects are created to handle end customers' purchases of previously defined products. You can create, retrieve, and pay individual orders, as well as list all orders. Orders are identified by a unique, random ID.
+
+### 10.2. SKUs
+
+Stores representations of stock keeping units. SKUs describe specific product variations, taking into account any combination of: attributes, currency, and cost. For example, a product may be a T-shirt, whereas a specific SKU represents the `size: large, color: red` version of that shirt.
+
+## 11. Sigma
+
+### 11.1. Scheduled Queries
+
+If you have scheduled a Sigma query, you'll receive a sigma.scheduled_query_run.created webhook each time the query runs. The webhook contains a ScheduledQueryRun object, which you can use to retrieve the query results.
+
+## 12. Reporting
+
+### 12.1. Report Runs
+
+The Report Run object represents an instance of a report type generated with specific run parameters. Once the object is created, Stripe begins processing the report. When the report has finished running, it will give you a reference to a file where you can retrieve your results. For an overview, see API Access to Reports.
+
+## 13. Webhook Endpoints
+
+You can configure webhook endpoints via the API to be notified about events that happen in your Stripe account or connected accounts.
+
+Most users configure webhooks from the dashboard, which provides a user interface for registering and testing your webhook endpoints.
+
+### 13.1. Create a webhook endpoint
+
+A webhook endpoint must have a url and a list of enabled_events. You may optionally specify the Boolean connect parameter. If set to true, then a Connect webhook endpoint that notifies the specified url about events from all connected accounts is created; otherwise an account webhook endpoint that notifies the specified url only about events from your account is created. You can also create webhook endpoints in the webhooks settings section of the Dashboard.

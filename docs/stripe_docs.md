@@ -1,5 +1,71 @@
 # Stripe Docs
 
+---
+
+**Table of Contents**
+
+<div id="user-content-toc">
+<ul>
+  <li>
+    <a href="#2-stripe-cli">2. Stripe CLI</a>
+    <ul>
+      <li>
+        <a href="#21-forward-events-to-your-server"
+          >2.1. Forward events to your server</a
+        >
+      </li>
+      <li>
+        <a href="#22-test-and-monitor-your-integration"
+          >2.2. Test and monitor your integration</a
+        >
+      </li>
+    </ul>
+  </li>
+  <li><a href="#3-keys">3. Keys</a></li>
+  <li><a href="#4-rate-limits">4. Rate Limits</a></li>
+  <li>
+    <a href="#5-card-testing">5. Card Testing</a>
+    <ul>
+      <li>
+        <a href="#51-active-card-testing-checklist"
+          >5.1. Active card testing checklist</a
+        >
+      </li>
+    </ul>
+  </li>
+  <li><a href="#6-expanding-responses">6. Expanding Responses</a></li>
+  <li><a href="#7-checklist">7. Checklist</a></li>
+  <li>
+    <a href="#8-webhooks">8. Webhooks</a>
+    <ul>
+      <li><a href="#81-test-webhooks">8.1. Test webhooks</a></li>
+      <li><a href="#82-check-signatures">8.2. Check signatures</a></li>
+      <li>
+        <a href="#83-best-practices-for-using-webhooks"
+          >8.3. Best Practices for Using Webhooks</a
+        >
+      </li>
+      <li><a href="#84-go-live">8.4. Go Live</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#9-error-handling">9. Error Handling</a>
+    <ul>
+      <li><a href="#91-idempotency">9.1. Idempotency</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#10-security">10. Security</a>
+    <ul>
+      <li><a href="#101-using-tls-and-https">10.1. Using TLS and HTTPS</a></li>
+    </ul>
+  </li>
+  <li><a href="#11-reports">11. Reports</a></li>
+</ul>
+</div>
+
+---
+
 ## 2. Stripe CLI
 
 > [Stripe CLI Reference][stripe_cli_reference]
@@ -242,3 +308,26 @@ Idempotency keys are sent in the Idempotency-Key header, and you should use them
 - Derive the key from a user-attached object like the ID of a shopping cart. This provides a relatively straightforward way to protect against double submissions.
 
 You can identify a previously executed response that’s being replayed from the server by the header `Idempotent-Replayed: true`.
+
+## 10. Security
+
+Anyone involved with the processing, transmission, or storage of card data must comply with the Payment Card Industry Data Security Standards (PCI DSS). Stripe has been audited by an independent PCI Qualified Security Assessor (QSA) and is certified as a PCI Level 1 Service Provider. This is the most stringent level of certification available in the payments industry.
+
+PCI compliance is a shared responsibility and applies to both Stripe and your business. When accepting payments, you must do so in a PCI compliant manner. The simplest way for you to be PCI compliant is to never see (or have access to) card data at all. Stripe makes this easy for you as we can do the heavy lifting to protect your customers’ card information. You can simplify your PCI compliance as long as you:
+
+- Use one of our recommended payments integrations to collect payment information, which is securely transmitted directly to Stripe without it passing through your servers
+- Serve your payment pages securely using Transport Layer Security (TLS) so that they make use of HTTPS
+- Review and validate your account’s PCI compliance annually
+
+### 10.1. Using TLS and HTTPS
+
+TLS refers to the process of securely transmitting data between the client—the app or browser that your customer is using—and your server. This was originally performed using the SSL (Secure Sockets Layer) protocol. However, this is outdated and no longer secure, and has been replaced by TLS. The term SSL continues to be used colloquially when referring to TLS and its function to protect transmitted data.
+
+If you’re making use of webhooks, we recommend using TLS for the endpoint to avoid traffic being intercepted and the notifications altered (sensitive information is never included in a webhook event).
+
+## 11. Reports
+
+```js
+// Note that a live-mode API key is required.
+const reportType = await stripe.reporting.reportTypes.retrieve('balance.summary.1');
+```

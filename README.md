@@ -15,7 +15,10 @@ There are currently 3 main approaches/packages for using the Stripe API in Dart:
     - Specifically for Flutter.
     - Has a bunch of useful widgets.
 
+> **Stripe offers a [checklist][checklist] page where you can see the recommended best practices.**
 
+
+[checklist]: https://stripe.com/docs/development/checklist
 [dart_io]: https://api.dart.dev/stable/2.10.4/dart-io/dart-io-library.html
 [http_dart]: https://pub.dev/packages/http
 [stripe_dart]: https://pub.dev/packages/stripe

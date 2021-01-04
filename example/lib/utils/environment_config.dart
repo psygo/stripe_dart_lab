@@ -6,4 +6,5 @@
 /// ```
 abstract class EnvironmentConfig {
   static const String pk_test = String.fromEnvironment("STRIPE_PK_TEST");
+  static const String sk_test = String.fromEnvironment("STRIPE_SK_TEST");
 }

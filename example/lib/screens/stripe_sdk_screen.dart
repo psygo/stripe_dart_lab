@@ -1,4 +1,7 @@
+import "dart:convert";
+
 import "package:flutter/material.dart";
+import "package:http/http.dart";
 import "package:stripe_sdk/stripe_sdk.dart";
 
 import "../utils/environment_config.dart";
@@ -33,6 +36,14 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
                     text: "Create a Token",
                     onPressed: createToken,
                   ),
+                  CustomButton(
+                    text: "Create Payment Intent",
+                    onPressed: createPaymentIntent,
+                  ),
+                  CustomButton(
+                    text: "Complete Payment Intent",
+                    onPressed: completePaymentIntent,
+                  ),
                 ],
               ),
             ),
@@ -42,13 +53,14 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
               indent: 10,
               endIndent: 10,
             ),
+            const SizedBox(height: 10),
             const Text(
               "Response",
               style: TextStyle(color: Colors.grey, fontSize: 20),
             ),
             const SizedBox(height: 30),
             Container(
-              height: 400,
+              height: 350,
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 children: <Widget>[
@@ -67,13 +79,8 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
     );
   }
 
-  String formatJson(String json) {
-    return json
-        .replaceAll(": {", ":\n    {")
-        .replaceAll("{", "{\n    ")
-        .replaceAll("}", "\n}\n")
-        .replaceAll(",", ",\n  ");
-  }
+  String formatJson(Map<String, Object> json) =>
+      JsonEncoder.withIndent("  ").convert(json);
 
   Future<void> createToken() async {
     const Map<String, Object> card = {
@@ -84,8 +91,45 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
     };
     final Map<String, dynamic> token =
         await stripeApi.createToken({"card": card});
-    setState(() {
-      responseText = formatJson(token.toString());
+    setState(() => responseText = formatJson(token));
+  }
+
+  Future<void> createPaymentIntent() async {
+    final Client client = Client();
+    final Uri uri = Uri(
+      scheme: "https",
+      host: "api.stripe.com",
+      path: "v1/payment_intents",
+      userInfo: EnvironmentConfig.sk_test,
+    );
+    final Response paymentIntentResponse =
+        await client.post(uri, body: <String, Object>{
+      "amount": "1000",
+      "currency": "brl",
+      "payment_method_types[]": "card",
+      "receipt_email": "jenny.rosen@example.com",
     });
+    setState(() => responseText = paymentIntentResponse.body);
+  }
+
+  Future<void> completePaymentIntent() async {
+    final Client client = Client();
+    final Uri uri = Uri(
+      scheme: "https",
+      host: "api.stripe.com",
+      path: "v1/payment_intents",
+      userInfo: EnvironmentConfig.sk_test,
+    );
+    // TODO: Create Payment Method
+    // TODO: Attach the payment method ID to the payment intent belo
+    final Response paymentIntentResponse =
+        await client.post(uri, body: <String, Object>{
+      "amount": "1000",
+      "currency": "brl",
+      "payment_method_types[]": "card",
+      "receipt_email": "jenny.rosen@example.com",
+      "confirm": "true"
+    });
+    setState(() => responseText = paymentIntentResponse.body);
   }
 }

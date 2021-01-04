@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http: ^0.12.2
   # stripe_payment: ^1.0.9
   stripe_sdk: ^4.0.1
 

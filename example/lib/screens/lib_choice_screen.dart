@@ -1,11 +1,10 @@
 import "package:flutter/material.dart";
 
+import "../widgets/custom_button.dart";
 import "stripe_payment_screen.dart";
 import "stripe_sdk_screen.dart";
 
 class LibChoiceScreen extends StatelessWidget {
-  static const TextStyle buttonTextStyle = TextStyle(fontSize: 20);
-
   const LibChoiceScreen();
 
   @override
@@ -19,8 +18,8 @@ class LibChoiceScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: 200),
-            RaisedButton(
-              child: const Text("Stripe Payment", style: buttonTextStyle),
+            CustomButton(
+              text: "Stripe Payment",
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const StripePaymentScreen(),
@@ -28,8 +27,8 @@ class LibChoiceScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            RaisedButton(
-              child: const Text("Stripe SDK", style: buttonTextStyle),
+            CustomButton(
+              text: "Stripe SDK",
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const StripeSdkScreen(),

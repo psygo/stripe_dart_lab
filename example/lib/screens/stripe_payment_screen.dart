@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "lib_choice_screen.dart";
+import "../widgets/custom_button.dart";
 
 class StripePaymentScreen extends StatelessWidget {
   const StripePaymentScreen();
@@ -15,11 +15,8 @@ class StripePaymentScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 200),
-            RaisedButton(
-              child: const Text(
-                "Create a Payment Intent",
-                style: LibChoiceScreen.buttonTextStyle,
-              ),
+            CustomButton(
+              text: "Create a Payment Intent",
               onPressed: () {},
             ),
           ],

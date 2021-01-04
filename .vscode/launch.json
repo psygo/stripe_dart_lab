@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define",
+                "STRIPE_PK_TEST=pk_test_51I1ag9L9RyDuS7hQ3nC9GSbsU1NzZP0whwVthFpud1FVdhwDlDXW9p4NoDBMf2cTvlRJJwOlrDK7QGVKHoigC8UV00HIeXLAUK"
+            ]
+        }
+    ]
+}

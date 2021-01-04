@@ -4,8 +4,8 @@
         "MD036": false
     },
     "files.exclude": {
-        // "**/android": true,
-        // "**/ios": true,
-        // "**/example.iml": true
+        "**/android": true,
+        "**/ios": true,
+        "**/example.iml": true
     }
 }

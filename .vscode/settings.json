@@ -1,8 +1,11 @@
 {
     "markdown.extension.toc.levels": "2..6",
-    "markdown-toc.depthFrom": 2,
     "markdownlint.config": {
         "MD036": false
     },
-    // "files.autoSave": "off"
+    "files.exclude": {
+        // "**/android": true,
+        // "**/ios": true,
+        // "**/example.iml": true
+    }
 }

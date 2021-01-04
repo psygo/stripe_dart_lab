@@ -9,10 +9,14 @@ environment:
   flutter: ">=1.17.0 <=1.25.0"
   sdk: ">=2.11.0 <3.0.0"
 
+flutter:
+  uses-material-design: true
+
 dependencies:
   flutter:
     sdk: flutter
 
+  # stripe_payment: ^1.0.9
   stripe_sdk: ^4.0.1
 
   stripe_dart_lab:

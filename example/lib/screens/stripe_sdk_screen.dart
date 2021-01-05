@@ -16,6 +16,7 @@ class StripeSdkScreen extends StatefulWidget {
 
 class _StripeSdkScreenState extends State<StripeSdkScreen> {
   final StripeApi stripeApi = StripeApi(EnvironmentConfig.pk_test);
+  final Client client = Client();
 
   String responseText = "";
 
@@ -37,11 +38,11 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
                     onPressed: createToken,
                   ),
                   CustomButton(
-                    text: "Create Payment Intent",
+                    text: "Create a Payment Intent",
                     onPressed: createPaymentIntent,
                   ),
                   CustomButton(
-                    text: "Complete Payment Intent",
+                    text: "Complete a Payment Intent",
                     onPressed: completePaymentIntent,
                   ),
                 ],
@@ -60,7 +61,7 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
             ),
             const SizedBox(height: 30),
             Container(
-              height: 350,
+              height: 300,
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 children: <Widget>[
@@ -95,7 +96,6 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
   }
 
   Future<void> createPaymentIntent() async {
-    final Client client = Client();
     final Uri uri = Uri(
       scheme: "https",
       host: "api.stripe.com",
@@ -113,22 +113,42 @@ class _StripeSdkScreenState extends State<StripeSdkScreen> {
   }
 
   Future<void> completePaymentIntent() async {
-    final Client client = Client();
-    final Uri uri = Uri(
+    // 1) Payment Method
+    final Uri paymentMethodUri = Uri(
+      scheme: "https",
+      host: "api.stripe.com",
+      path: "v1/payment_methods",
+      userInfo: EnvironmentConfig.sk_test,
+    );
+    final Response paymentMethodResponse = await client.post(
+      paymentMethodUri,
+      body: <String, Object>{
+        "type": "card",
+        "card[number]": "4242424242424242",
+        "card[exp_month]": "1",
+        "card[exp_year]": "2022",
+        "card[cvc]": "314",
+      },
+    );
+    final Map<String, Object> paymentMethodResponseJson =
+        json.decode(paymentMethodResponse.body);
+
+    // 2) Payment Intent with Auto Confirmation
+    final Uri paymentIntentUri = Uri(
       scheme: "https",
       host: "api.stripe.com",
       path: "v1/payment_intents",
       userInfo: EnvironmentConfig.sk_test,
     );
-    // TODO: Create Payment Method
     // TODO: Attach the payment method ID to the payment intent belo
     final Response paymentIntentResponse =
-        await client.post(uri, body: <String, Object>{
+        await client.post(paymentIntentUri, body: <String, Object>{
       "amount": "1000",
       "currency": "brl",
       "payment_method_types[]": "card",
       "receipt_email": "jenny.rosen@example.com",
-      "confirm": "true"
+      "confirm": "true",
+      "payment_method": paymentMethodResponseJson["id"],
     });
     setState(() => responseText = paymentIntentResponse.body);
   }
